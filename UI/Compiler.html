@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compiler</title>  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="compiler.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-3">
+                    <li><a class="navbar-brand" href="#">
+                        <img src="logo.png" alt="logo" width="40px">
+                    </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">Menu</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="container">
+
+        <!-- Instructions Section -->
+        <div class="fixed-left">Instructions:</div>
+    
+        <!-- Dynamic Text Area -->
+        <div class="text-area-container" id="textArea">
+            <div class="line">
+                <span class="line-number">1</span>
+                <input type="text" onkeydown="handleKey(event, this)">
+            </div>
+        </div>
+    
+        <!-- Buttons Section -->
+        <div class="fixed-right">
+            <button>Score</button>
+            <button>Save</button>
+            <button>Turn in</button>
+            <button>Insights</button>
+        </div>
+    
+    </div>
+    
+    <!-- Output Section -->
+    <div class="output-container">
+        <strong>Output:</strong>
+    </div>
+    
+    <script>
+        function handleKey(event, currentInput) {
+            const textArea = document.getElementById("textArea");
+            const lines = Array.from(textArea.querySelectorAll(".line"));
+            const currentLineIndex = lines.indexOf(currentInput.parentElement);
+    
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent default behavior
+                addNewLine(currentLineIndex + 1);
+            }
+    
+            if (event.key === 'Backspace' && currentInput.value === '') {
+                event.preventDefault();
+                if (currentLineIndex > 0) {
+                    currentInput.parentElement.remove();
+                    lines[currentLineIndex - 1].querySelector('input').focus();
+                    updateLineNumbers();
+                }
+            }
+        }
+    
+        function addNewLine(index) {
+            const textArea = document.getElementById("textArea");
+            const newLine = document.createElement("div");
+            newLine.className = "line";
+    
+            const lineNumber = document.createElement("span");
+            lineNumber.className = "line-number";
+            newLine.appendChild(lineNumber);
+    
+            const input = document.createElement("input");
+            input.type = "text";
+            input.onkeydown = (event) => handleKey(event, input);
+            newLine.appendChild(input);
+    
+            const lines = Array.from(textArea.querySelectorAll(".line"));
+    
+            if (index < lines.length) {
+                textArea.insertBefore(newLine, lines[index]);
+            } else {
+                textArea.appendChild(newLine);
+            }
+    
+            updateLineNumbers();
+            input.focus();
+        }
+    
+        function updateLineNumbers() {
+            const lines = document.querySelectorAll(".line-number");
+            lines.forEach((lineNumber, index) => {
+                lineNumber.textContent = index + 1;
+            });
+        }
+    </script>
+
+</body>
+</html>

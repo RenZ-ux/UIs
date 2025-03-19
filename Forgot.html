@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="forgot.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-3">
+                    <li><a class="navbar-brand" href="Login.html">
+                        <img src="logo.png" alt="logo" width="40px">
+                    </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="container logo-container">
+        <img src="logo.png" alt="App Logo" class="img-fluid mb-4" width="200">
+    </div>
+
+    <!-- Login Form Container -->
+    <div class="container d-flex justify-content-center align-items-center ">
+
+        <div class="login-container">
+            
+            <form>
+                        <!--Input for Email-->
+                <div class="p-1 email form-floating ">
+                    <input type="text" class="form-control" id="email" placeholder="Email" required>
+                    <label for="username">Email<span class="text-danger">*</span></label>
+                </div>
+                        <!-- Send button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mt-3">Send</button>
+                </div>
+                
+            </form>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // Get elements
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
+            const subjectBtn = document.getElementById("subjectBtn");
+            const closeSidebar = document.getElementById("closeSidebar");
+    
+            // Open Sidebar
+            subjectBtn.addEventListener("click", function () {
+                sidebar.classList.add("open");
+                overlay.classList.add("show");
+            });
+    
+            // Close Sidebar
+            closeSidebar.addEventListener("click", function () {
+                sidebar.classList.remove("open");
+                overlay.classList.remove("show");
+            });
+    
+            // Close sidebar when clicking outside
+            overlay.addEventListener("click", function () {
+                sidebar.classList.remove("open");
+                overlay.classList.remove("show");
+            });
+        </script>
+</body>
+</html>

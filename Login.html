@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-3">
+                    <li><a class="navbar-brand" href="Login.html">
+                        <img src="logo.png" alt="logo" width="40px">
+                    </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="container logo-container">
+        <img src="logo.png" alt="App Logo" class="img-fluid mb-4" width="190">
+    </div>
+
+    <!-- Login Form Container -->
+    <div class="container d-flex justify-content-center align-items-center ">
+
+        <div class="login-container">
+            <p class="login">──────────── Login ────────────</p>
+            <div class="btns">
+                <div class="d-flex justify-content-center gap-3 mb-3">
+                    <button class="btn btn-light"> <img src="google logo.png" alt="Google" width="20"> Google</button>
+                    <button class="btn btn-light"><img src="guest logo.png" alt="guest" width="40px">Guest</button>
+                </div>
+
+            <p class="or">──────────── or ────────────</p>
+
+            <form>
+                        <!--Input for Username/email-->
+                <div class="p-1 username form-floating ">
+                    <input type="text" class="form-control" id="username" placeholder="Username/Email" required>
+                    <label for="username">Username/Email<span class="text-danger">*</span></label>
+                </div>
+                        <!--Input for Password-->
+                <div class="p-1 password">
+                    <div class="input-group form-floating">
+                        <input type="password" class="form-control" id="password" placeholder="Password*" required>
+                        <label for="password">Password <span class="text-danger">*</span></label>
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
+                        <img src="eye.png" alt="unhide" width=15px height="15">
+                        </button>
+                    </div>
+                </div>
+                        <!--Forgot password-->
+                <div class="forgot-password">
+                    <a href="Forgot.html" class="text-dark">Forgot Password?</a>
+                </div>
+                        <!--Sign in button-->
+                    <div class="text-center">
+                    <button type="submit" class="btn btn-primary mt-3">Log in</button>
+                    </div>
+                
+            </form>
+            <div class="signup-link mt-3">
+                <p>Don't have an account? <a href="Register.html" class="text-dark fw-bold">Sign up!</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Password Toggle Script -->
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
+
+    <script>
+        // Get elements
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const subjectBtn = document.getElementById("subjectBtn");
+        const closeSidebar = document.getElementById("closeSidebar");
+
+        // Open Sidebar
+        subjectBtn.addEventListener("click", function () {
+            sidebar.classList.add("open");
+            overlay.classList.add("show");
+        });
+
+        // Close Sidebar
+        closeSidebar.addEventListener("click", function () {
+            sidebar.classList.remove("open");
+            overlay.classList.remove("show");
+        });
+
+        // Close sidebar when clicking outside
+        overlay.addEventListener("click", function () {
+            sidebar.classList.remove("open");
+            overlay.classList.remove("show");
+        });
+    </script>
+</body>
+</html>
